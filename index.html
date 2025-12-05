@@ -1,0 +1,193 @@
+<!DOCTYPE html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Emma Glow | Skincare AI</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <!-- Chewy serves as the Ashial/Monstruoz alternative (Playful, marker-style script, separated letters) -->
+    <link href="https://fonts.googleapis.com/css2?family=Chewy&display=swap" rel="stylesheet">
+    <!-- MediaPipe Styles -->
+    <link href="https://unpkg.com/material-components-web@latest/dist/material-components-web.min.css" rel="stylesheet">
+    <script>
+      tailwind.config = {
+        theme: {
+          extend: {
+            fontFamily: {
+              sans: ['"Times New Roman"', 'Times', 'serif'], // Body Text (Requested Times New Roman)
+              serif: ['"Chewy"', 'cursive'], // Titles (Fun Script Style)
+            },
+            colors: {
+              emma: {
+                almond: '#F3DAD8', // Almond Blossom
+                tickled: '#F47FBE', // Tickled Pink
+                gold: '#FFD700', // Gold
+                black: '#000000', // Pure Black for text
+                glass: 'rgba(255, 255, 255, 0.35)',
+                glassBorder: 'rgba(255, 255, 255, 0.8)',
+              }
+            },
+            animation: {
+              'float': 'float 6s ease-in-out infinite',
+              'shimmer': 'shimmer 2s linear infinite',
+              'scan': 'scan 3s linear infinite',
+              'blob': 'blob 7s infinite',
+              'twinkle': 'twinkle 2s ease-in-out infinite',
+              'wand-wave': 'wandWave 1s ease-in-out forwards',
+              'star-burst': 'starBurst 0.8s ease-out forwards',
+              'pop-in': 'popIn 0.6s cubic-bezier(0.175, 0.885, 0.32, 1.275) forwards',
+              'wiggle': 'wiggle 2s ease-in-out infinite',
+              'bounce-slow': 'bounce 3s infinite',
+              'blink': 'blink 4s infinite',
+              'scan-vertical': 'scanVertical 2s linear infinite',
+              'flash-camera': 'flashCamera 3s infinite',
+              'mix-shake': 'mixShake 4s ease-in-out infinite',
+              'bubble-rise': 'bubbleRise 2s ease-in infinite',
+            },
+            keyframes: {
+              float: {
+                '0%, 100%': { transform: 'translateY(0)' },
+                '50%': { transform: 'translateY(-10px)' },
+              },
+              wandWave: {
+                '0%': { transform: 'rotate(0deg) translate(0, 0)', opacity: 0 },
+                '20%': { opacity: 1 },
+                '50%': { transform: 'rotate(-20deg) translate(-10px, 10px)' },
+                '100%': { transform: 'rotate(0deg) translate(0, 0)', opacity: 0 },
+              },
+              starBurst: {
+                '0%': { transform: 'scale(0) rotate(0deg)', opacity: 0 },
+                '50%': { opacity: 1 },
+                '100%': { transform: 'scale(1.5) rotate(180deg)', opacity: 0 },
+              },
+              blob: {
+                '0%': { transform: 'translate(0px, 0px) scale(1)' },
+                '33%': { transform: 'translate(30px, -50px) scale(1.1)' },
+                '66%': { transform: 'translate(-20px, 20px) scale(0.9)' },
+                '100%': { transform: 'translate(0px, 0px) scale(1)' },
+              },
+              twinkle: {
+                '0%, 100%': { opacity: '1', transform: 'scale(1) rotate(0deg)' },
+                '50%': { opacity: '0.6', transform: 'scale(0.8) rotate(15deg)' },
+              },
+              popIn: {
+                '0%': { opacity: 0, transform: 'scale(0.8) translateY(20px)' },
+                '100%': { opacity: 1, transform: 'scale(1) translateY(0)' },
+              },
+              wiggle: {
+                '0%, 100%': { transform: 'rotate(-3deg)' },
+                '50%': { transform: 'rotate(3deg)' },
+              },
+              blink: {
+                '0%, 45%, 55%, 100%': { transform: 'scaleY(1)' },
+                '50%': { transform: 'scaleY(0.1)' },
+              },
+              scanVertical: {
+                '0%': { top: '0%', opacity: 0 },
+                '10%': { opacity: 1 },
+                '90%': { opacity: 1 },
+                '100%': { top: '100%', opacity: 0 },
+              },
+              flashCamera: {
+                '0%, 90%, 100%': { opacity: 0, transform: 'scale(1)' },
+                '92%': { opacity: 1, transform: 'scale(1.5)' },
+                '95%': { opacity: 0, transform: 'scale(1)' },
+              },
+              mixShake: {
+                 '0%, 100%': { transform: 'rotate(0deg)' },
+                 '25%': { transform: 'rotate(-10deg)' },
+                 '75%': { transform: 'rotate(10deg)' },
+              },
+              bubbleRise: {
+                '0%': { transform: 'translateY(100%) scale(0.5)', opacity: 0 },
+                '50%': { opacity: 1 },
+                '100%': { transform: 'translateY(-20%) scale(1.2)', opacity: 0 },
+              }
+            }
+          }
+        }
+      }
+    </script>
+    <style>
+      body {
+        /* Maximalist background - Fresh & Youthful */
+        background: radial-gradient(circle at 10% 20%, rgb(255, 255, 255) 0%, rgb(253, 235, 237) 50%, rgb(243, 218, 216) 90%);
+        background-attachment: fixed;
+        color: #000000;
+        font-family: 'Times New Roman', Times, serif;
+        font-weight: 400;
+      }
+      
+      /* Typography System */
+      h1, h2, h3, .font-serif {
+        font-family: 'Chewy', cursive;
+        letter-spacing: 0.05em; /* Separated letters for the Monstruoz/Ashial look */
+      }
+      
+      /* Glassmorphism - Cozy & Fresh */
+      .glass-panel {
+        background: rgba(255, 255, 255, 0.75);
+        backdrop-filter: blur(25px);
+        -webkit-backdrop-filter: blur(25px);
+        border: 3px solid rgba(255, 255, 255, 1);
+        box-shadow: 8px 8px 0px rgba(244, 127, 190, 0.2); /* Pop art shadow */
+        border-radius: 30px;
+      }
+      
+      .glass-card {
+        background: rgba(255, 255, 255, 0.85);
+        backdrop-filter: blur(15px);
+        border: 2px solid rgba(255, 255, 255, 1);
+        transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+        box-shadow: 5px 5px 0px rgba(243, 218, 216, 1);
+      }
+      
+      .glass-card:hover {
+        background: rgba(255, 255, 255, 1);
+        transform: translateY(-8px) scale(1.02);
+        box-shadow: 8px 8px 0px #F47FBE; 
+        border-color: #F47FBE;
+      }
+
+      /* Custom Scrollbar */
+      ::-webkit-scrollbar {
+        width: 10px;
+      }
+      ::-webkit-scrollbar-track {
+        background: #F3DAD8;
+      }
+      ::-webkit-scrollbar-thumb {
+        background: #F47FBE;
+        border-radius: 10px;
+        border: 2px solid #fff;
+      }
+      
+      /* Inputs */
+      input, textarea, button {
+        font-family: 'Times New Roman', Times, serif;
+      }
+    </style>
+  <script type="importmap">
+{
+  "imports": {
+    "react/": "https://aistudiocdn.com/react@^19.2.0/",
+    "react": "https://aistudiocdn.com/react@^19.2.0",
+    "react-dom/client": "https://aistudiocdn.com/react-dom@^19.2.0/client",
+    "react-dom": "https://aistudiocdn.com/react-dom@^19.2.0",
+    "lucide-react": "https://aistudiocdn.com/lucide-react@^0.555.0",
+    "@google/genai": "https://aistudiocdn.com/@google/genai@^1.30.0",
+    "@mediapipe/tasks-vision": "https://cdn.jsdelivr.net/npm/@mediapipe/tasks-vision@0.10.3/+esm",
+    "react-dom/": "https://aistudiocdn.com/react-dom@^19.2.1/"
+  }
+}
+</script>
+<link rel="stylesheet" href="/index.css">
+</head>
+  <body>
+    <div id="root"></div>
+    <script type="module" src="./index.tsx"></script>
+  <script type="module" src="/index.tsx"></script>
+</body>
+</html>

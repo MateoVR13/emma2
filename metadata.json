@@ -1,0 +1,8 @@
+{
+  "name": "Emma Glow",
+  "description": "Premium skincare application with AI analysis, budget advice, and curated products.",
+  "requestFramePermissions": [
+    "camera",
+    "microphone"
+  ]
+}
