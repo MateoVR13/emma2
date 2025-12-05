@@ -8,21 +8,15 @@ let aiInstance: GoogleGenAI | null = null;
 const getAIClient = () => {
   if (aiInstance) return aiInstance;
 
-  let key = '';
-  try {
-    if (typeof process !== 'undefined' && process.env && process.env.API_KEY) {
-      key = process.env.API_KEY;
-    }
-  } catch (e) {
-    console.error("Error accediendo a variables de entorno:", e);
-  }
+  // Acceso directo a process.env.API_KEY para permitir el reemplazo en build time (Netlify)
+  const key = process.env.API_KEY;
 
   if (key) {
-    console.log("🔑 API Key detectada, inicializando servicios de IA...");
     aiInstance = new GoogleGenAI({ apiKey: key });
     return aiInstance;
   }
 
+  console.error("⚠️ API Key no configurada. Configura la variable de entorno API_KEY en Netlify.");
   return null;
 };
 
@@ -31,7 +25,7 @@ export const analyzeSkinImage = async (base64Image: string): Promise<AnalysisRes
 
   if (!ai) {
     console.error("❌ Error: API Key no encontrada al intentar analizar imagen.");
-    throw new Error("No se detectó la API Key.");
+    throw new Error("No se detectó la API Key. Configura API_KEY en las variables de entorno.");
   }
 
   const prompt = `Analiza esta imagen facial dermatológicamente. Identifica el tipo de piel, ingredientes que se deben evitar y condiciones visibles. 
@@ -82,7 +76,7 @@ export const analyzeIngredients = async (base64Image: string, userSkinType: stri
   const ai = getAIClient();
 
   if (!ai) {
-     throw new Error("API Key no encontrada.");
+     throw new Error("API Key no encontrada. Configura API_KEY en Netlify.");
   }
 
   const prompt = `
@@ -183,7 +177,7 @@ Utiliza la siguiente lógica de clasificación y la lista de referencia de ingre
 
 export const analyzeRoutine = async (base64Image: string): Promise<RoutineBuilderResult> => {
   const ai = getAIClient();
-  if (!ai) throw new Error("API Key no encontrada.");
+  if (!ai) throw new Error("API Key no encontrada. Configura API_KEY en Netlify.");
 
   const prompt = `
 ### ROL y OBJETIVO
@@ -312,7 +306,7 @@ Utiliza la siguiente lógica de clasificación y la lista de referencia de ingre
 
 export const chatWithEmma = async (history: {role: string, parts: {text: string}[]}[], userMessage: string) => {
    const ai = getAIClient();
-   if (!ai) return "Error de conexión con AI.";
+   if (!ai) return "Error de conexión con AI. Verifica tu API Key.";
 
    const systemInstruction = `Eres Emma, la mascota virtual de la app Emma Glow. 
    Tu personalidad es empática y experta en skincare.
