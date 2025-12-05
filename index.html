@@ -7,8 +7,8 @@
     <script src="https://cdn.tailwindcss.com"></script>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <!-- Chewy serves as the Ashial/Monstruoz alternative (Playful, marker-style script, separated letters) -->
-    <link href="https://fonts.googleapis.com/css2?family=Chewy&display=swap" rel="stylesheet">
+    <!-- Jost (Main UI) & Chewy (Logo/Welcome) -->
+    <link href="https://fonts.googleapis.com/css2?family=Jost:ital,wght@0,100..900;1,100..900&family=Chewy&display=swap" rel="stylesheet">
     <!-- MediaPipe Styles -->
     <link href="https://unpkg.com/material-components-web@latest/dist/material-components-web.min.css" rel="stylesheet">
     <script>
@@ -16,8 +16,8 @@
         theme: {
           extend: {
             fontFamily: {
-              sans: ['"Times New Roman"', 'Times', 'serif'], // Body Text (Requested Times New Roman)
-              serif: ['"Chewy"', 'cursive'], // Titles (Fun Script Style)
+              sans: ['"Jost"', 'sans-serif'], // UI Principal (Inputs, Botones, Textos)
+              serif: ['"Chewy"', 'cursive'], // Logo y Bienvenida (Display)
             },
             colors: {
               emma: {
@@ -116,14 +116,21 @@
         background: radial-gradient(circle at 10% 20%, rgb(255, 255, 255) 0%, rgb(253, 235, 237) 50%, rgb(243, 218, 216) 90%);
         background-attachment: fixed;
         color: #000000;
-        font-family: 'Times New Roman', Times, serif;
+        /* Global Font Update: Jost */
+        font-family: 'Jost', sans-serif; 
         font-weight: 400;
       }
       
       /* Typography System */
-      h1, h2, h3, .font-serif {
-        font-family: 'Chewy', cursive;
-        letter-spacing: 0.05em; /* Separated letters for the Monstruoz/Ashial look */
+      h1, h2, h3, h4, h5, h6, input, button, textarea, p, span, div {
+        font-family: 'Jost', sans-serif;
+      }
+
+      /* Exception: Classes explicitly using font-serif will use Chewy (Logo/Welcome) */
+      .font-serif {
+        font-family: 'Chewy', cursive !important;
+        font-weight: 400;
+        letter-spacing: 0.05em;
       }
       
       /* Glassmorphism - Cozy & Fresh */
@@ -163,11 +170,6 @@
         border-radius: 10px;
         border: 2px solid #fff;
       }
-      
-      /* Inputs */
-      input, textarea, button {
-        font-family: 'Times New Roman', Times, serif;
-      }
     </style>
   <script type="importmap">
 {
@@ -183,11 +185,9 @@
   }
 }
 </script>
-<link rel="stylesheet" href="/index.css">
 </head>
   <body>
     <div id="root"></div>
     <script type="module" src="./index.tsx"></script>
-  <script type="module" src="/index.tsx"></script>
-</body>
+  </body>
 </html>
