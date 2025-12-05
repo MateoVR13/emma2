@@ -9,7 +9,7 @@ const getAIClient = () => {
   if (aiInstance) return aiInstance;
 
   // Acceso directo a process.env.API_KEY para permitir el reemplazo en build time (Netlify)
-  const key = process.env.API_KEY;
+  const key = import.meta.env.VITE_API_KEY;
 
   if (key) {
     aiInstance = new GoogleGenAI({ apiKey: key });
