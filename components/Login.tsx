@@ -32,12 +32,14 @@ const Login: React.FC<LoginProps> = ({ onLogin }) => {
           <div className="mb-4">
             <AbstractText text="Emma Glow" baseSize="xl" />
           </div>
+          {/* Changed back to sans (Jost) for subtitle */}
           <p className="text-black font-sans tracking-widest text-sm uppercase font-bold opacity-60">Santuario Digital de Belleza</p>
         </div>
 
         <form onSubmit={handleSubmit} className="space-y-6">
           <div className="space-y-2 group">
-            <label className="text-xs font-bold text-pink-400 ml-4 uppercase tracking-widest group-focus-within:text-emma-tickled transition-colors">Usuario</label>
+            {/* Changed back to sans (Jost) for label */}
+            <label className="text-xs font-sans font-bold text-pink-400 ml-4 uppercase tracking-widest group-focus-within:text-emma-tickled transition-colors">Usuario</label>
             <input 
               type="text" 
               value={username}
@@ -49,7 +51,8 @@ const Login: React.FC<LoginProps> = ({ onLogin }) => {
           </div>
           
           <div className="space-y-2 group">
-             <label className="text-xs font-bold text-pink-400 ml-4 uppercase tracking-widest group-focus-within:text-emma-tickled transition-colors">Contraseña</label>
+             {/* Changed back to sans (Jost) for label */}
+             <label className="text-xs font-sans font-bold text-pink-400 ml-4 uppercase tracking-widest group-focus-within:text-emma-tickled transition-colors">Contraseña</label>
             <input 
               type="password" 
               value={password}
@@ -62,14 +65,14 @@ const Login: React.FC<LoginProps> = ({ onLogin }) => {
 
           <button 
             type="submit" 
-            className="w-full bg-black text-white py-5 rounded-[2rem] font-serif text-3xl hover:bg-emma-tickled hover:scale-[1.02] hover:shadow-xl hover:shadow-pink-200 transition-all flex items-center justify-center gap-3 shadow-lg group mt-8"
+            className="w-full bg-black text-white py-5 rounded-[2rem] font-sans font-bold text-2xl hover:bg-emma-tickled hover:scale-[1.02] hover:shadow-xl hover:shadow-pink-200 transition-all flex items-center justify-center gap-3 shadow-lg group mt-8"
           >
             Ingresar <ArrowRight size={28} className="group-hover:translate-x-2 transition-transform" />
           </button>
         </form>
 
         <div className="mt-10 text-center">
-             <p className="text-sm text-gray-400 font-serif italic">
+             <p className="text-sm text-gray-400 font-sans italic">
                 Al ingresar aceptas brillar con luz propia.
              </p>
         </div>
